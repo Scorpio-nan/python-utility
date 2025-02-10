@@ -95,6 +95,29 @@ def monitor_directory(directory):
 # monitor_directory('./workspace')
 
 
+def qrcode_gen(url):
+    import qrcode
+    # 创建二维码实例
+    qr = qrcode.QRCode(
+        version=1,  # 控制二维码的大小，范围1-40
+        error_correction=qrcode.constants.ERROR_CORRECT_L,  # 错误纠正等级
+        box_size=10,  # 每个小方格的像素大小
+        border=4,  # 边框的厚度（最小值为4）
+    )
+    # 添加数据到二维码
+    qr.add_data(url)
+    qr.make(fit=True)
+
+    # 创建一个图片实例
+    img = qr.make_image(fill='black', back_color='white')
+
+    # 保存二维码图片
+    img.save("qrcode.png")
+
+    # 或者直接展示二维码
+    img.show()
+
+
 # 按装订区域中的绿色按钮以运行脚本。
 if __name__ == '__main__':
     batch_filename('./dir', 'project')
