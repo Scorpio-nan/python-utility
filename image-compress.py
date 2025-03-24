@@ -91,7 +91,7 @@ class ImageCompressor:
 
         total_files = len(all_files)
         print(f"Found {total_files} image files to process")
-        print(f"Output directory: {self.output_dir}")
+        print(f"输出目录: {self.output_dir}")
 
         for i, file_path in enumerate(all_files, 1):
             self._print_progress(i, total_files)
@@ -113,22 +113,22 @@ class ImageCompressor:
 
         # 打印最终统计
         print("\n\nCompression complete!")
-        print(f"Processed files: {self.stats['processed']}")
-        print(f"Skipped files: {self.stats['skipped']}")
-        print(f"Original total size: {self.stats['original_size'] / 1024 / 1024:.2f} MB")
-        print(f"Compressed total size: {self.stats['compressed_size'] / 1024 / 1024:.2f} MB")
-        print(f"Space saved: {(self.stats['original_size'] - self.stats['compressed_size']) / 1024 / 1024:.2f} MB")
-        print(f"Time elapsed: {time.time() - self.start_time:.2f} seconds")
+        print(f"已处理文件数量: {self.stats['processed']}")
+        print(f"跳过文件数量: {self.stats['skipped']}")
+        print(f"原始文件总大小: {self.stats['original_size'] / 1024 / 1024:.2f} MB")
+        print(f"压缩后文件总大小: {self.stats['compressed_size'] / 1024 / 1024:.2f} MB")
+        print(f"节省空间: {(self.stats['original_size'] - self.stats['compressed_size']) / 1024 / 1024:.2f} MB")
+        print(f"处理时长: {time.time() - self.start_time:.2f} seconds")
 
         if self.stats['errors']:
-            print("\nErrors encountered:")
+            print("\n发生错误:")
             for error in self.stats['errors']:
                 print(f"  - {error}")
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python compress_images.py <input_directory> <output_directory>")
+        print("使用方法: python compress_images.py <input_directory> <output_directory>")
         sys.exit(1)
 
     input_dir = sys.argv[1]
