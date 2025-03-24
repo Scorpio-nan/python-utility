@@ -40,12 +40,20 @@ class ImageCompressor:
         """处理单个图片文件"""
         try:
             output_path = self._get_output_path(input_path)
-            # 创建输出目录（如果不存在）
             output_path.parent.mkdir(parents=True, exist_ok=True)
 
             with Image.open(input_path) as img:
+                """
                 # 保留原始模式（如RGBA、LA等）
                 if img.mode in ('RGBA', 'LA'):
+                    img = img.convert('RGBA')
+                else:
+                    img = img.convert('RGB')
+                """
+                # 增强模式转换逻辑
+                if img.mode == 'P' and 'transparency' in img.info:
+                    img = img.convert('RGBA')
+                elif img.mode in ('RGBA', 'LA'):
                     img = img.convert('RGBA')
                 else:
                     img = img.convert('RGB')
@@ -61,7 +69,6 @@ class ImageCompressor:
                 else:
                     img.save(output_path, **save_args)
 
-                # 记录压缩数据
                 original_size = input_path.stat().st_size
                 compressed_size = output_path.stat().st_size
                 return (original_size, compressed_size)
