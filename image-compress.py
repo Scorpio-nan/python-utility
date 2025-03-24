@@ -156,4 +156,5 @@ if __name__ == "__main__":
 
     compressor.run()
 
+#  pip install pillow
 #  eg: python .\image-compress.py E:\images E:\compressed_images
