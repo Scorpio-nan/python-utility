@@ -1,0 +1,9 @@
+pandas
+watchdog
+requests
+pillow
+passlib
+matplotlib
+numpy
+openai
+tiktoken
