@@ -11,3 +11,4 @@ alibabacloud-oss-v2
 fastapi
 uvicorn
 python-multipart
+jinja2

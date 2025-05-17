@@ -1,9 +1,11 @@
 
 """  fast-api 示例  """
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import os
 
 
@@ -16,7 +18,9 @@ UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 app = FastAPI()
-
+# 设置模板目录
+templates = Jinja2Templates(directory="templates")
+# 设置静态文件目录
 app.mount(f'/{UPLOAD_DIR}', StaticFiles(directory=UPLOAD_DIR), name=UPLOAD_DIR)
 # 配置CORS
 app.add_middleware(
@@ -56,7 +60,19 @@ async def upload_file(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/login", response_class=HTMLResponse)
+async def login(request: Request):
+    return templates.TemplateResponse(
+        "login.html",
+        {
+            "request": request,  # 必须包含
+            "title": "登录页面",
+            "content": "欢迎来到我的网站!"
+        }
+    )
+
+
+
 if __name__ == "__main__":
     import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("fastapi-server:app", host="0.0.0.0", port=8000, reload=True)
