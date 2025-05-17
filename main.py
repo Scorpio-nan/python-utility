@@ -118,6 +118,18 @@ def qrcode_gen(url):
     img.show()
 
 
+def image2_base64(file_path: str | bytes):
+    import base64
+    if isinstance(file_path, str):
+        with open(file_path, 'rb') as f:
+            image_data = f.read()
+            base64_data = base64.b64encode(image_data).decode('utf-8')
+            return base64_data
+    else:
+        base64_data = base64.b64encode(file_path).decode('utf-8')
+        return base64_data
+
+
 # 按装订区域中的绿色按钮以运行脚本。
 if __name__ == '__main__':
     batch_filename('./dir', 'project')

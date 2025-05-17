@@ -1,3 +1,6 @@
+
+"""  图片压缩脚本  """
+
 import os
 from PIL import Image
 from pathlib import Path
