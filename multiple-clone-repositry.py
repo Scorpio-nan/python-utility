@@ -1,3 +1,5 @@
+""" 快速克隆指定git仓库 """
+
 import requests
 import subprocess
 

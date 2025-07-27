@@ -14,3 +14,11 @@ pyautogui
 pyglossary
 lxml
 
+
+alibabacloud-oss-v2
+fastapi
+uvicorns
+python-multipart
+jinja2
+rarfile
+tqdm
