@@ -7,3 +7,10 @@ matplotlib
 numpy
 openai
 tiktoken
+transformers
+llama-index
+chromadb
+pyautogui
+pyglossary
+lxml
+
