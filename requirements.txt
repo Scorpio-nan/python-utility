@@ -22,3 +22,7 @@ python-multipart
 jinja2
 rarfile
 tqdm
+python-pptx
+patool
+OdooRPC
+user-agents
