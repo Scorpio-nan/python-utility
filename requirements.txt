@@ -17,7 +17,7 @@ lxml
 
 alibabacloud-oss-v2
 fastapi
-uvicorns
+uvicorn
 python-multipart
 jinja2
 rarfile
